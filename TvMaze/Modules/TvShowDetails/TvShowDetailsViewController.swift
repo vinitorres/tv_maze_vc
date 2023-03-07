@@ -126,11 +126,12 @@ extension TvShowDetailsViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: EpisodesTableCell.identifier, for: indexPath) as! EpisodesTableCell
-        cell.prepare(season: viewModel.seasons[indexPath.count])
+        cell.prepare(season: viewModel.seasons[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 220
     }
+    
 }

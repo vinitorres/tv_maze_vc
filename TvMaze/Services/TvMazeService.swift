@@ -76,8 +76,6 @@ class TvMazeService: TvMazeServiceProtocol {
         }
     }
     
-    
-
     //
     //    func getActorSeries(actorId: Int) async throws -> [TvShow] {
     //        let url = URL(string: "\(baseUrl)people/\(actorId)/castcredits")!
@@ -122,6 +120,3 @@ class TvMazeService: TvMazeServiceProtocol {
     
 }
 
-struct GetTvShowsResponse: Decodable {
-    let tvShows: [TvShow]
-}

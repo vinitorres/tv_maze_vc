@@ -3,7 +3,6 @@ class TvShowDetailsViewModel {
     var viewControllerDelegate:TvShowDetailsViewControllerDelegate?
     
     var tvShow: TvShow
-    var episodes: [Episode] = []
     var seasons: [[Episode]] = []
     var actors: [Actor] = []
     
@@ -36,8 +35,7 @@ class TvShowDetailsViewModel {
         tvMazeService.getEpisodes(id: tvShow.id) { [self] result in
             viewControllerDelegate?.hideEpisodesLoading()
             do {
-                self.episodes = try result.get()
-                prepareSeasonList()
+                self.seasons = prepareSeasonList(episodes: try result.get())
                 self.viewControllerDelegate?.refreshEpisodesList()
             } catch (let error ){
                 viewControllerDelegate?.showErrorAlert(error.localizedDescription)
@@ -45,21 +43,23 @@ class TvShowDetailsViewModel {
         }
     }
     
-    private func prepareSeasonList() {
+    private func prepareSeasonList(episodes: [Episode]) -> [[Episode]] {
+        var temps = [[Episode]]()
         for episode in episodes {
-            if seasons.isEmpty {
-                seasons.append([episode])
+            if temps.isEmpty {
+                temps.append([episode])
             } else {
-                var lastSeason = seasons.last
-                if lastSeason?.first?.season == episode.season {
-                    lastSeason?.append(episode)
+                var lastSeason = temps[temps.count - 1]
+                
+                if lastSeason[0].season == episode.season {
+                    temps[temps.count - 1].append(episode)
                 } else {
-                    seasons.append([episode])
+                    temps.append([episode])
                 }
             }
         }
         
-        print("number of seasons: \(seasons.count)")
+        return temps
     }
     
 }

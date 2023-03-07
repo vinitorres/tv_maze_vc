@@ -41,10 +41,10 @@ class EpisodeCellView: UIView {
     }
     
     func prepare(episode: Episode) {
-        titleLabel.text = episode.name
+        titleLabel.text = "\(episode.number) : \(episode.name)"
         bannerImage.kf.setImage(with: episode.poster)
     }
-    
+
 }
 
 extension EpisodeCellView: ViewConfiguration {
