@@ -45,6 +45,7 @@
 		24E5783E29A8393000560943 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5783129A8392F00560943 /* Episode.swift */; };
 		24E5784329A8393000560943 /* TvMazeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5783A29A8393000560943 /* TvMazeService.swift */; };
 		24E5784B29A83EDB00560943 /* ViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5784A29A83EDB00560943 /* ViewConfiguration.swift */; };
+		24EA72DE2A126E5B003753E0 /* TvShowsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EA72DD2A126E5B003753E0 /* TvShowsViewModelTests.swift */; };
 		3B2CA8EA04A9C253DCCC49B3 /* Pods_TvMazeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A6100DE44A924E9BFA9B07 /* Pods_TvMazeTests.framework */; };
 		C5C1198C3B16844361BA0FA7 /* Pods_TvMaze_TvMazeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81650B57B16DF64C06244BFD /* Pods_TvMaze_TvMazeUITests.framework */; };
 		E128867C07C01787E2C4AAAE /* Pods_TvMaze.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8803041372E9AFEBCCC8E9F3 /* Pods_TvMaze.framework */; };
@@ -107,6 +108,7 @@
 		24E5783129A8392F00560943 /* Episode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		24E5783A29A8393000560943 /* TvMazeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvMazeService.swift; sourceTree = "<group>"; };
 		24E5784A29A83EDB00560943 /* ViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfiguration.swift; sourceTree = "<group>"; };
+		24EA72DD2A126E5B003753E0 /* TvShowsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvShowsViewModelTests.swift; sourceTree = "<group>"; };
 		47A121537F48ECFEEDEBB47F /* Pods-TvMaze.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TvMaze.debug.xcconfig"; path = "Target Support Files/Pods-TvMaze/Pods-TvMaze.debug.xcconfig"; sourceTree = "<group>"; };
 		50A6100DE44A924E9BFA9B07 /* Pods_TvMazeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TvMazeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DE6FE7945529BDC77A3F1B /* Pods-TvMaze.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TvMaze.release.xcconfig"; path = "Target Support Files/Pods-TvMaze/Pods-TvMaze.release.xcconfig"; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		2483EB7A29C21EDE00A3AE4D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				24EA72DC2A126D65003753E0 /* TvShows */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -382,6 +385,14 @@
 			path = Files;
 			sourceTree = "<group>";
 		};
+		24EA72DC2A126D65003753E0 /* TvShows */ = {
+			isa = PBXGroup;
+			children = (
+				24EA72DD2A126E5B003753E0 /* TvShowsViewModelTests.swift */,
+			);
+			path = TvShows;
+			sourceTree = "<group>";
+		};
 		87EE303BECC8D13318ACD8C9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,7 +403,6 @@
 				7F800A02D6A3ABC70EC641E5 /* Pods-TvMazeTests.debug.xcconfig */,
 				E00929D0A85A517234A65A1D /* Pods-TvMazeTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -494,9 +504,9 @@
 			);
 			mainGroup = 24E577F329A837B200560943;
 			packageReferences = (
-				246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire.git" */,
-				24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit.git" */,
-				247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
+				246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire" */,
+				24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit" */,
+				247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 24E577FD29A837B200560943 /* Products */;
 			projectDirPath = "";
@@ -664,6 +674,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2483EB7D29C21F6200A3AE4D /* TvMazeServiceTests.swift in Sources */,
+				24EA72DE2A126E5B003753E0 /* TvShowsViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1007,7 +1018,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
+		246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1015,7 +1026,7 @@
 				kind = branch;
 			};
 		};
-		247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
+		247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -1023,7 +1034,7 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit.git" */ = {
+		24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -1036,17 +1047,17 @@
 /* Begin XCSwiftPackageProductDependency section */
 		246878DF29AFF32E00EAC81A /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire.git" */;
+			package = 246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 		247FE6C629B1CA760066BD5D /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
+			package = 247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 		24A0BDA029B081820099F09A /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit.git" */;
+			package = 24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

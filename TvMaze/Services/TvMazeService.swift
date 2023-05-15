@@ -4,7 +4,7 @@ import Alamofire
 public protocol TvMazeServiceProtocol {
     func getTvShows(page: Int, completion: @escaping (Result<[TvShow], Error>) -> Void)
     func getEpisodes(id: Int, completion: @escaping (Result<[Episode], Error>) -> Void)
-    func searchTvShow(query: String, completion: @escaping (Result<[TvShow], Error>) -> Void)
+    //func searchTvShow(query: String, completion: @escaping (Result<[TvShow], Error>) -> Void)
     func getActors(tvShowId: Int, completion: @escaping (Result<[Actor], Error>) -> Void)
     //    func getActorSeries(actorId: Int) async throws -> [TvShow]
 }
@@ -48,17 +48,17 @@ public class TvMazeService: TvMazeServiceProtocol {
         }
     }
     
-    public func searchTvShow(query: String, completion: @escaping (Result<[TvShow], Error>) -> Void) {
-        let url = URL(string: "\(baseUrl)\(TvMazeEndpoints.searchTvShowEndpoint)\(query)")!
-        sessionManager.request(url).responseDecodable(of: [TvShow].self) { response in
-            switch response.result {
-            case .success(let value):
-                completion(.success(value))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
+//    public func searchTvShow(query: String, completion: @escaping (Result<[TvShow], Error>) -> Void) {
+//        let url = URL(string: "\(baseUrl)\(TvMazeEndpoints.searchTvShowEndpoint)\(query)")!
+//        sessionManager.request(url).responseDecodable(of: [TvShow].self) { response in
+//            switch response.result {
+//            case .success(let value):
+//                completion(.success(value))
+//            case .failure(let error):
+//                completion(.failure(error))
+//            }
+//        }
+//    }
     
     public func getActors(tvShowId: Int, completion: @escaping (Result<[Actor], Error>) -> Void) {
         let actorsUrl = TvMazeEndpoints.getActorsEndpoint.replacingOccurrences(of: "{id}", with: "\(tvShowId)")

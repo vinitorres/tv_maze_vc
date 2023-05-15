@@ -34,10 +34,10 @@ final class TvMazeServiceTests: XCTestCase {
                 XCTFail("Request error")
             }
         }
-        waitForExpectations(timeout: 10)
+        waitForExpectations(timeout: 30)
     }
     
-    func testGetHomeFailure() {
+    func testGetShowsFailure() {
         let expectation = self.expectation(description: "get TvShows failure")
         
         HTTPStubs.stubRequests { request in
@@ -55,7 +55,7 @@ final class TvMazeServiceTests: XCTestCase {
                 expectation.fulfill()
             }
         }
-        waitForExpectations(timeout: 10)
+        waitForExpectations(timeout: 30)
         HTTPStubs.removeAllStubs()
     }
 
@@ -72,14 +72,16 @@ final class TvMazeServiceTests: XCTestCase {
                 XCTFail("Request error")
             }
         }
-        waitForExpectations(timeout: 10)
+        waitForExpectations(timeout: 30)
     }
 
     func testGetEpisodesFailure() {
         let expectation = self.expectation(description: "get Episodes failure")
+        
+        let url = TvMazeEndpoints.getEpisodesEndpoint.replacingOccurrences(of: "{id}", with: "1")
 
         HTTPStubs.stubRequests { request in
-            request.url?.absoluteString.contains(TvMazeEndpoints.getEpisodesEndpoint) ?? false
+            request.url?.absoluteString.contains(url) ?? false
         } withStubResponse: { _ in
             return HTTPStubsResponse(error: NSError(domain: "com.test.error", code: 404))
         }
@@ -93,45 +95,7 @@ final class TvMazeServiceTests: XCTestCase {
                 expectation.fulfill()
             }
         }
-        waitForExpectations(timeout: 10)
-        HTTPStubs.removeAllStubs()
-    }
-
-    //SearchTvShow
-    func testSearchTvShowSuccess() {
-        let expectation = self.expectation(description: "search TvShow success")
-        sut.searchTvShow(query: "arrow") { result in
-            switch result {
-            case .success(let success):
-                XCTAssertNotNil(success, "success can't be nil")
-                XCTAssertGreaterThan(success.count, 0, "success sizes needs to be greater than 0")
-                expectation.fulfill()
-            case .failure:
-                XCTFail("Request error")
-            }
-        }
-        waitForExpectations(timeout: 10)
-    }
-
-    func testSearchTvShowFailure() {
-        let expectation = self.expectation(description: "search TvShow failure")
-
-        HTTPStubs.stubRequests { request in
-            request.url?.absoluteString.contains(TvMazeEndpoints.searchTvShowEndpoint) ?? false
-        } withStubResponse: { _ in
-            return HTTPStubsResponse(error: NSError(domain: "com.test.error", code: 404))
-        }
-
-        sut.searchTvShow(query: "test") { result in
-            switch result {
-            case .success:
-                XCTFail("Stub Error")
-            case .failure(let error):
-                XCTAssertNotNil(error)
-                expectation.fulfill()
-            }
-        }
-        waitForExpectations(timeout: 10)
+        waitForExpectations(timeout: 30)
         HTTPStubs.removeAllStubs()
     }
     
@@ -148,14 +112,16 @@ final class TvMazeServiceTests: XCTestCase {
                 XCTFail("Request error")
             }
         }
-        waitForExpectations(timeout: 10)
+        waitForExpectations(timeout: 30)
     }
 
     func testGetActorsFailure() {
         let expectation = self.expectation(description: "get Actors failure")
+        
+        let url = TvMazeEndpoints.getActorsEndpoint.replacingOccurrences(of: "{id}", with: "1")
 
         HTTPStubs.stubRequests { request in
-            request.url?.absoluteString.contains(TvMazeEndpoints.getActorsEndpoint) ?? false
+            request.url?.absoluteString.contains(url) ?? false
         } withStubResponse: { _ in
             return HTTPStubsResponse(error: NSError(domain: "com.test.error", code: 404))
         }
@@ -169,7 +135,7 @@ final class TvMazeServiceTests: XCTestCase {
                 expectation.fulfill()
             }
         }
-        waitForExpectations(timeout: 10)
+        waitForExpectations(timeout: 30)
         HTTPStubs.removeAllStubs()
     }
 
