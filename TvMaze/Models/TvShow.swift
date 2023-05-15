@@ -1,6 +1,6 @@
 import Foundation
 
-struct TvShow: Decodable {
+public struct TvShow: Decodable {
     let id: Int
     let name: String
     

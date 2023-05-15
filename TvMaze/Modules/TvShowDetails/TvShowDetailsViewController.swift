@@ -42,7 +42,8 @@ class TvShowDetailsViewController: UIViewController {
     
     static func assembleModule(tvShow: TvShow) -> UIViewController {
         let viewController = TvShowDetailsViewController()
-        let viewModel = TvShowDetailsViewModel(tvShow: tvShow)
+        let service = TvMazeService()
+        let viewModel = TvShowDetailsViewModel(tvShow: tvShow, service: service)
         viewController.viewModel = viewModel
         return viewController
     }

@@ -15,6 +15,7 @@
 		247FE6C429B1C2F80066BD5D /* TvShowDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FE6C329B1C2F80066BD5D /* TvShowDetailsViewModel.swift */; };
 		247FE6C729B1CA760066BD5D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 247FE6C629B1CA760066BD5D /* Kingfisher */; };
 		247FE6CA29B1F15D0066BD5D /* EpisodesTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FE6C929B1F15D0066BD5D /* EpisodesTableCell.swift */; };
+		2483EB7D29C21F6200A3AE4D /* TvMazeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2483EB7C29C21F6200A3AE4D /* TvMazeServiceTests.swift */; };
 		248A3A1129B0062E00872172 /* TvShowCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248A3A1029B0062E00872172 /* TvShowCollectionCell.swift */; };
 		2492E19E29B646E400F217F2 /* GenreCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2492E19D29B646E400F217F2 /* GenreCollectionCell.swift */; };
 		2492E1A029B65A6400F217F2 /* CustomBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2492E19F29B65A6400F217F2 /* CustomBackButton.swift */; };
@@ -38,14 +39,15 @@
 		24E5780229A837B200560943 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5780129A837B200560943 /* SceneDelegate.swift */; };
 		24E5780929A837B300560943 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24E5780829A837B300560943 /* Assets.xcassets */; };
 		24E5780C29A837B300560943 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E5780A29A837B300560943 /* LaunchScreen.storyboard */; };
-		24E5781729A837B400560943 /* TvMazeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5781629A837B400560943 /* TvMazeTests.swift */; };
 		24E5782129A837B400560943 /* TvMazeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5782029A837B400560943 /* TvMazeUITests.swift */; };
 		24E5782329A837B400560943 /* TvMazeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5782229A837B400560943 /* TvMazeUITestsLaunchTests.swift */; };
 		24E5783D29A8393000560943 /* TvShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5783029A8392F00560943 /* TvShow.swift */; };
 		24E5783E29A8393000560943 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5783129A8392F00560943 /* Episode.swift */; };
 		24E5784329A8393000560943 /* TvMazeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5783A29A8393000560943 /* TvMazeService.swift */; };
-		24E5784429A8393000560943 /* TvShowsRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5783C29A8393000560943 /* TvShowsRemoteDataSource.swift */; };
 		24E5784B29A83EDB00560943 /* ViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5784A29A83EDB00560943 /* ViewConfiguration.swift */; };
+		3B2CA8EA04A9C253DCCC49B3 /* Pods_TvMazeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A6100DE44A924E9BFA9B07 /* Pods_TvMazeTests.framework */; };
+		C5C1198C3B16844361BA0FA7 /* Pods_TvMaze_TvMazeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81650B57B16DF64C06244BFD /* Pods_TvMaze_TvMazeUITests.framework */; };
+		E128867C07C01787E2C4AAAE /* Pods_TvMaze.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8803041372E9AFEBCCC8E9F3 /* Pods_TvMaze.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,7 @@
 		247FE6C129B1C2BE0066BD5D /* TvShowDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvShowDetailsViewController.swift; sourceTree = "<group>"; };
 		247FE6C329B1C2F80066BD5D /* TvShowDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvShowDetailsViewModel.swift; sourceTree = "<group>"; };
 		247FE6C929B1F15D0066BD5D /* EpisodesTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesTableCell.swift; sourceTree = "<group>"; };
+		2483EB7C29C21F6200A3AE4D /* TvMazeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvMazeServiceTests.swift; sourceTree = "<group>"; };
 		248A3A1029B0062E00872172 /* TvShowCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvShowCollectionCell.swift; sourceTree = "<group>"; };
 		2492E19D29B646E400F217F2 /* GenreCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreCollectionCell.swift; sourceTree = "<group>"; };
 		2492E19F29B65A6400F217F2 /* CustomBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackButton.swift; sourceTree = "<group>"; };
@@ -97,15 +100,22 @@
 		24E5780B29A837B300560943 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24E5780D29A837B300560943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24E5781229A837B400560943 /* TvMazeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TvMazeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		24E5781629A837B400560943 /* TvMazeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvMazeTests.swift; sourceTree = "<group>"; };
 		24E5781C29A837B400560943 /* TvMazeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TvMazeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		24E5782029A837B400560943 /* TvMazeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvMazeUITests.swift; sourceTree = "<group>"; };
 		24E5782229A837B400560943 /* TvMazeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvMazeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		24E5783029A8392F00560943 /* TvShow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShow.swift; sourceTree = "<group>"; };
 		24E5783129A8392F00560943 /* Episode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		24E5783A29A8393000560943 /* TvMazeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvMazeService.swift; sourceTree = "<group>"; };
-		24E5783C29A8393000560943 /* TvShowsRemoteDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowsRemoteDataSource.swift; sourceTree = "<group>"; };
 		24E5784A29A83EDB00560943 /* ViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfiguration.swift; sourceTree = "<group>"; };
+		47A121537F48ECFEEDEBB47F /* Pods-TvMaze.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TvMaze.debug.xcconfig"; path = "Target Support Files/Pods-TvMaze/Pods-TvMaze.debug.xcconfig"; sourceTree = "<group>"; };
+		50A6100DE44A924E9BFA9B07 /* Pods_TvMazeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TvMazeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		60DE6FE7945529BDC77A3F1B /* Pods-TvMaze.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TvMaze.release.xcconfig"; path = "Target Support Files/Pods-TvMaze/Pods-TvMaze.release.xcconfig"; sourceTree = "<group>"; };
+		7594F3DB5071EBDFAA1F9B19 /* Pods-TvMaze-TvMazeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TvMaze-TvMazeUITests.debug.xcconfig"; path = "Target Support Files/Pods-TvMaze-TvMazeUITests/Pods-TvMaze-TvMazeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7F800A02D6A3ABC70EC641E5 /* Pods-TvMazeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TvMazeTests.debug.xcconfig"; path = "Target Support Files/Pods-TvMazeTests/Pods-TvMazeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		81650B57B16DF64C06244BFD /* Pods_TvMaze_TvMazeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TvMaze_TvMazeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8803041372E9AFEBCCC8E9F3 /* Pods_TvMaze.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TvMaze.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB902487F15B8CA667B2DC59 /* Pods-TvMaze-TvMazeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TvMaze-TvMazeUITests.release.xcconfig"; path = "Target Support Files/Pods-TvMaze-TvMazeUITests/Pods-TvMaze-TvMazeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E00929D0A85A517234A65A1D /* Pods-TvMazeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TvMazeTests.release.xcconfig"; path = "Target Support Files/Pods-TvMazeTests/Pods-TvMazeTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,26 +126,54 @@
 				247FE6C729B1CA760066BD5D /* Kingfisher in Frameworks */,
 				246878E029AFF32E00EAC81A /* Alamofire in Frameworks */,
 				24A0BDA129B081820099F09A /* SnapKit in Frameworks */,
+				E128867C07C01787E2C4AAAE /* Pods_TvMaze.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		24E5780F29A837B400560943 /* Frameworks */ = {
+		2C30BAE1ADF3EAC7C8F27933 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B2CA8EA04A9C253DCCC49B3 /* Pods_TvMazeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		24E5781929A837B400560943 /* Frameworks */ = {
+		41BD6A35D812566108559316 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5C1198C3B16844361BA0FA7 /* Pods_TvMaze_TvMazeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E01F69BADE4411AD4A87D50 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8803041372E9AFEBCCC8E9F3 /* Pods_TvMaze.framework */,
+				81650B57B16DF64C06244BFD /* Pods_TvMaze_TvMazeUITests.framework */,
+				50A6100DE44A924E9BFA9B07 /* Pods_TvMazeTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2483EB7A29C21EDE00A3AE4D /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		2483EB7B29C21F2D00A3AE4D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2483EB7C29C21F6200A3AE4D /* TvMazeServiceTests.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		248A3A0F29B0061800872172 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +288,8 @@
 				24E5781529A837B400560943 /* TvMazeTests */,
 				24E5781F29A837B400560943 /* TvMazeUITests */,
 				24E577FD29A837B200560943 /* Products */,
+				1E01F69BADE4411AD4A87D50 /* Frameworks */,
+				87EE303BECC8D13318ACD8C9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -273,7 +313,6 @@
 				248A3A0F29B0061800872172 /* Components */,
 				24E5784629A83C8E00560943 /* Modules */,
 				24E5782F29A8392F00560943 /* Models */,
-				24E5783B29A8393000560943 /* Repositories */,
 				24E5783929A8393000560943 /* Services */,
 			);
 			path = TvMaze;
@@ -282,7 +321,8 @@
 		24E5781529A837B400560943 /* TvMazeTests */ = {
 			isa = PBXGroup;
 			children = (
-				24E5781629A837B400560943 /* TvMazeTests.swift */,
+				2483EB7B29C21F2D00A3AE4D /* Services */,
+				2483EB7A29C21EDE00A3AE4D /* Modules */,
 			);
 			path = TvMazeTests;
 			sourceTree = "<group>";
@@ -315,14 +355,6 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		24E5783B29A8393000560943 /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				24E5783C29A8393000560943 /* TvShowsRemoteDataSource.swift */,
-			);
-			path = Repositories;
-			sourceTree = "<group>";
-		};
 		24E5784629A83C8E00560943 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -350,6 +382,20 @@
 			path = Files;
 			sourceTree = "<group>";
 		};
+		87EE303BECC8D13318ACD8C9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				47A121537F48ECFEEDEBB47F /* Pods-TvMaze.debug.xcconfig */,
+				60DE6FE7945529BDC77A3F1B /* Pods-TvMaze.release.xcconfig */,
+				7594F3DB5071EBDFAA1F9B19 /* Pods-TvMaze-TvMazeUITests.debug.xcconfig */,
+				CB902487F15B8CA667B2DC59 /* Pods-TvMaze-TvMazeUITests.release.xcconfig */,
+				7F800A02D6A3ABC70EC641E5 /* Pods-TvMazeTests.debug.xcconfig */,
+				E00929D0A85A517234A65A1D /* Pods-TvMazeTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -357,6 +403,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24E5782629A837B400560943 /* Build configuration list for PBXNativeTarget "TvMaze" */;
 			buildPhases = (
+				E86B2974FC86BC49EA360DB8 /* [CP] Check Pods Manifest.lock */,
 				24E577F829A837B200560943 /* Sources */,
 				24E577F929A837B200560943 /* Frameworks */,
 				24E577FA29A837B200560943 /* Resources */,
@@ -379,9 +426,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24E5782929A837B400560943 /* Build configuration list for PBXNativeTarget "TvMazeTests" */;
 			buildPhases = (
+				B929C644E4238B8B73AED400 /* [CP] Check Pods Manifest.lock */,
 				24E5780E29A837B400560943 /* Sources */,
-				24E5780F29A837B400560943 /* Frameworks */,
 				24E5781029A837B400560943 /* Resources */,
+				2C30BAE1ADF3EAC7C8F27933 /* Frameworks */,
+				8A894CD3012404A3E3CCA1E8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -397,9 +446,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24E5782C29A837B400560943 /* Build configuration list for PBXNativeTarget "TvMazeUITests" */;
 			buildPhases = (
+				A74CD53D1A7B273EFA71646D /* [CP] Check Pods Manifest.lock */,
 				24E5781829A837B400560943 /* Sources */,
-				24E5781929A837B400560943 /* Frameworks */,
 				24E5781A29A837B400560943 /* Resources */,
+				41BD6A35D812566108559316 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -444,9 +494,9 @@
 			);
 			mainGroup = 24E577F329A837B200560943;
 			packageReferences = (
-				246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire" */,
-				24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit" */,
-				247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire.git" */,
+				24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit.git" */,
+				247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
 			);
 			productRefGroup = 24E577FD29A837B200560943 /* Products */;
 			projectDirPath = "";
@@ -485,6 +535,92 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8A894CD3012404A3E3CCA1E8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TvMazeTests/Pods-TvMazeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TvMazeTests/Pods-TvMazeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TvMazeTests/Pods-TvMazeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A74CD53D1A7B273EFA71646D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TvMaze-TvMazeUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B929C644E4238B8B73AED400 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TvMazeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E86B2974FC86BC49EA360DB8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TvMaze-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		24E577F829A837B200560943 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -499,7 +635,6 @@
 				24E5784329A8393000560943 /* TvMazeService.swift in Sources */,
 				247FE6C429B1C2F80066BD5D /* TvShowDetailsViewModel.swift in Sources */,
 				24A0BDA329B091990099F09A /* Actor.swift in Sources */,
-				24E5784429A8393000560943 /* TvShowsRemoteDataSource.swift in Sources */,
 				24A0F78A29ADB61D009E4074 /* TvShowsViewController.swift in Sources */,
 				24ADB80D29B6D72700C381B3 /* Person.swift in Sources */,
 				2492E1A229B6631700F217F2 /* FavoriteButton.swift in Sources */,
@@ -528,7 +663,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24E5781729A837B400560943 /* TvMazeTests.swift in Sources */,
+				2483EB7D29C21F6200A3AE4D /* TvMazeServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +819,7 @@
 		};
 		24E5782729A837B400560943 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47A121537F48ECFEEDEBB47F /* Pods-TvMaze.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -717,6 +853,7 @@
 		};
 		24E5782829A837B400560943 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60DE6FE7945529BDC77A3F1B /* Pods-TvMaze.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -750,6 +887,7 @@
 		};
 		24E5782A29A837B400560943 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F800A02D6A3ABC70EC641E5 /* Pods-TvMazeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -770,6 +908,7 @@
 		};
 		24E5782B29A837B400560943 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E00929D0A85A517234A65A1D /* Pods-TvMazeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -790,6 +929,7 @@
 		};
 		24E5782D29A837B400560943 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7594F3DB5071EBDFAA1F9B19 /* Pods-TvMaze-TvMazeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -808,6 +948,7 @@
 		};
 		24E5782E29A837B400560943 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB902487F15B8CA667B2DC59 /* Pods-TvMaze-TvMazeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -866,7 +1007,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -874,7 +1015,7 @@
 				kind = branch;
 			};
 		};
-		247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -882,7 +1023,7 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -895,17 +1036,17 @@
 /* Begin XCSwiftPackageProductDependency section */
 		246878DF29AFF32E00EAC81A /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire.git" */;
 			productName = Alamofire;
 		};
 		247FE6C629B1CA760066BD5D /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
 			productName = Kingfisher;
 		};
 		24A0BDA029B081820099F09A /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit.git" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

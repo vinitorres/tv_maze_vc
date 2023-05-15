@@ -1,7 +1,7 @@
 import Foundation
 import Alamofire
 
-protocol TvMazeServiceProtocol {
+public protocol TvMazeServiceProtocol {
     func getTvShows(page: Int, completion: @escaping (Result<[TvShow], Error>) -> Void)
     func getEpisodes(id: Int, completion: @escaping (Result<[Episode], Error>) -> Void)
     func searchTvShow(query: String, completion: @escaping (Result<[TvShow], Error>) -> Void)
@@ -9,70 +9,71 @@ protocol TvMazeServiceProtocol {
     //    func getActorSeries(actorId: Int) async throws -> [TvShow]
 }
 
-struct TvMazeEndpoints {
-    static let getTvShowsEndpoint = "shows?page="
+public struct TvMazeEndpoints {
+    public static let getTvShowsEndpoint = "shows?page="
+    public static let getEpisodesEndpoint = "shows/{id}/episodes"
+    public static let searchTvShowEndpoint = "search/shows?q="
+    public static let getActorsEndpoint = "shows/{id}/cast"
 }
 
-class TvMazeService: TvMazeServiceProtocol {
+public class TvMazeService: TvMazeServiceProtocol {
     
     private let baseUrl = Bundle.main.object(forInfoDictionaryKey: "BaseUrlTvMaze") as! String
     private let sessionManager = Session()
     
-    func getTvShows(page: Int = 0, completion: @escaping (Result<[TvShow], Error>) -> Void) {
-        var tvShows = [TvShow]()
+    public init() {}
+    
+    public func getTvShows(page: Int = 0, completion: @escaping (Result<[TvShow], Error>) -> Void) {
         let url = "\(baseUrl)\(TvMazeEndpoints.getTvShowsEndpoint)\(page)"
         sessionManager.request(url).responseDecodable(of: [TvShow].self) { response in
             switch response.result {
             case .success(let value):
-                tvShows = value
+                completion(.success(value))
             case .failure(let error):
                 completion(.failure(error))
             }
-            completion(.success(tvShows))
         }
     }
     
-    func getEpisodes(id: Int, completion: @escaping (Result<[Episode], Error>) -> Void) {
-        var episodes = [Episode]()
-        let url = "\(baseUrl)shows/\(id)/episodes"
+    public func getEpisodes(id: Int, completion: @escaping (Result<[Episode], Error>) -> Void) {
+        let episodesUrl = TvMazeEndpoints.getEpisodesEndpoint.replacingOccurrences(of: "{id}", with: "\(id)")
+        let url = "\(baseUrl)\(episodesUrl)"
         sessionManager.request(url).responseDecodable(of: [Episode].self) { response in
             switch response.result {
             case .success(let value):
-                episodes = value
+                completion(.success(value))
             case .failure(let error):
                 completion(.failure(error))
             }
-            completion(.success(episodes))
         }
     }
     
-    func searchTvShow(query: String, completion: @escaping (Result<[TvShow], Error>) -> Void) {
-        var tvShows = [TvShow]()
-        let url = URL(string: "\(baseUrl)search/shows?q=\(query)")!
+    public func searchTvShow(query: String, completion: @escaping (Result<[TvShow], Error>) -> Void) {
+        let url = URL(string: "\(baseUrl)\(TvMazeEndpoints.searchTvShowEndpoint)\(query)")!
         sessionManager.request(url).responseDecodable(of: [TvShow].self) { response in
             switch response.result {
             case .success(let value):
-                tvShows = value
+                completion(.success(value))
             case .failure(let error):
                 completion(.failure(error))
             }
-            completion(.success(tvShows))
         }
     }
     
-    func getActors(tvShowId: Int, completion: @escaping (Result<[Actor], Error>) -> Void) {
-        var actors = [Actor]()
-        let url = URL(string: "\(baseUrl)shows/\(tvShowId)/cast")!
+    public func getActors(tvShowId: Int, completion: @escaping (Result<[Actor], Error>) -> Void) {
+        let actorsUrl = TvMazeEndpoints.getActorsEndpoint.replacingOccurrences(of: "{id}", with: "\(tvShowId)")
+        let url = URL(string: "\(baseUrl)\(actorsUrl)")!
         sessionManager.request(url).responseDecodable(of: [Person].self) { response in
             switch response.result {
             case .success(let value):
+                var actors = [Actor]()
                 for person in value {
                     actors.append(person.person)
                 }
+                completion(.success(actors))
             case .failure(let error):
                 completion(.failure(error))
             }
-            completion(.success(actors))
         }
     }
     

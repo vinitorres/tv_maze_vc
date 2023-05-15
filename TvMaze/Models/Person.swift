@@ -3,6 +3,6 @@
 // Created by André Vinícius Torres Conrado
 //
 
-struct Person: Decodable {
+public struct Person: Decodable {
     let person: Actor
 }

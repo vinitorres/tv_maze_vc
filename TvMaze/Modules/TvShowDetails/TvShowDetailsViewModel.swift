@@ -6,10 +6,11 @@ class TvShowDetailsViewModel {
     var seasons: [[Episode]] = []
     var actors: [Actor] = []
     
-    let tvMazeService = TvMazeService()
+    let service: TvMazeServiceProtocol!
     
-    init(tvShow: TvShow) {
+    init(tvShow: TvShow, service: TvMazeServiceProtocol) {
         self.tvShow = tvShow
+        self.service = service
     }
     
     func loadData() {
@@ -19,7 +20,7 @@ class TvShowDetailsViewModel {
     
     func loadActors() {
         viewControllerDelegate?.showActorsLoading()
-        tvMazeService.getActors(tvShowId: tvShow.id) { [self] result in
+        service.getActors(tvShowId: tvShow.id) { [self] result in
             viewControllerDelegate?.hideActorsLoading()
             do {
                 self.actors = try result.get()
@@ -32,7 +33,7 @@ class TvShowDetailsViewModel {
     
     func loadEpisodes() {
         viewControllerDelegate?.showEpisodesLoading()
-        tvMazeService.getEpisodes(id: tvShow.id) { [self] result in
+        service.getEpisodes(id: tvShow.id) { [self] result in
             viewControllerDelegate?.hideEpisodesLoading()
             do {
                 self.seasons = prepareSeasonList(episodes: try result.get())
@@ -44,22 +45,22 @@ class TvShowDetailsViewModel {
     }
     
     private func prepareSeasonList(episodes: [Episode]) -> [[Episode]] {
-        var temps = [[Episode]]()
+        var seasons = [[Episode]]()
         for episode in episodes {
-            if temps.isEmpty {
-                temps.append([episode])
+            if seasons.isEmpty {
+                seasons.append([episode])
             } else {
-                var lastSeason = temps[temps.count - 1]
+                var lastSeason = seasons[seasons.count - 1]
                 
                 if lastSeason[0].season == episode.season {
-                    temps[temps.count - 1].append(episode)
+                    seasons[seasons.count - 1].append(episode)
                 } else {
-                    temps.append([episode])
+                    seasons.append([episode])
                 }
             }
         }
         
-        return temps
+        return seasons
     }
     
 }
