@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 
 class TvShowsView: UIView {
-        
+    
     lazy var searchTextField: UITextField = {
         let textfield = UITextField()
         textfield.placeholder = "Search Tv Show"
@@ -11,6 +11,10 @@ class TvShowsView: UIView {
         textfield.layer.borderColor = UIColor.black.cgColor
         textfield.layer.borderWidth = 0.5
         textfield.leftViewMode = UITextField.ViewMode.always
+        textfield.returnKeyType = UIReturnKeyType.done
+        textfield.autocorrectionType = UITextAutocorrectionType.no
+        textfield.autocapitalizationType = UITextAutocapitalizationType.none
+        textfield.spellCheckingType = UITextSpellCheckingType.no
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         imageView.image = UIImage(systemName: "magnifyingglass")
         imageView.tintColor = UIColor.black
@@ -40,6 +44,10 @@ class TvShowsView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func setSearchFieldDelegate(_ delegate: UITextFieldDelegate) {
+        searchTextField.delegate = delegate
     }
     
     public func setCollectionViewDelegate(_ delegate: UICollectionViewDelegate) {

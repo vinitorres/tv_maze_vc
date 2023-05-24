@@ -5,23 +5,92 @@
 
 
 import XCTest
+@testable import TvMaze
 
 final class TvShowsViewModelTests: XCTestCase {
+    
+    var sut: TvShowsViewModel!
+    var mockService: TvMazeServiceMock!
+    var mockTvShowsViewController: TvShowsViewControllerMock!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        mockService = TvMazeServiceMock()
+        mockTvShowsViewController = TvShowsViewControllerMock()
+        sut = TvShowsViewModel(service: mockService, viewControllerDelegate: mockTvShowsViewController)
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
+        mockService = nil
+        mockTvShowsViewController = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+    func testFechtTvShowsSuccess() {
+        let tvShow1 = TvShow(id: 0, name: "Nome 1", image: ["Image": "url"], genres: ["teste1", "teste2"], summary: "description 1")
+        let tvShow2 = TvShow(id: 1, name: "Nome 2", image: ["Image": "url"], genres: ["teste1", "teste2"], summary: "description 2")
+        let list: [TvShow] = [tvShow1, tvShow2]
 
+        mockService.getTvShowsResult = .success(list)
+        sut.fetchTvShows(page: 0)
+
+        XCTAssertTrue(mockTvShowsViewController.showLoadingCalled)
+        XCTAssertTrue(mockTvShowsViewController.hideLoadingCalled)
+        XCTAssertEqual(sut.getNumberOfRows(), list.count)
+        XCTAssertTrue(mockTvShowsViewController.refreshListCalled)
+    }
+    
+    func testFechtTvShowsFailure() {
+        mockService.getTvShowsResult = .failure(NSError(domain: "com.test.error", code: 0))
+        sut.fetchTvShows(page: 0)
+        
+        XCTAssertTrue(mockTvShowsViewController.showLoadingCalled)
+        XCTAssertTrue(mockTvShowsViewController.hideLoadingCalled)
+        XCTAssertTrue(mockTvShowsViewController.showErrorAlertCalled)
+    }
+    
+    func testGetTvShowAtIndex() {
+        let tvShow1 = TvShow(id: 0, name: "Nome 1", image: ["Image": "url"], genres: ["teste1", "teste2"], summary: "description 1")
+        let tvShow2 = TvShow(id: 1, name: "Nome 2", image: ["Image": "url"], genres: ["teste1", "teste2"], summary: "description 2")
+        let list: [TvShow] = [tvShow1, tvShow2]
+
+        mockService.getTvShowsResult = .success(list)
+        sut.fetchTvShows(page: 0)
+
+        XCTAssertEqual(sut.getTvShowAtIndex(index: 0).name, "Nome 1")
+        XCTAssertEqual(sut.getTvShowAtIndex(index: 1).name, "Nome 2")
+    }
+    
+    func testGetNumberOfRows() {
+        XCTAssertEqual(sut.getNumberOfRows(), 0)
+    }
+    
+    func testFetchTvShows() {
+        sut.fetchTvShows(page: 0)
+    }
 }
+
+class TvShowsViewControllerMock: TvShowsViewControllerDelegate {
+    
+    var showLoadingCalled = false
+    var hideLoadingCalled = false
+    var refreshListCalled = false
+    var showErrorAlertCalled = false
+
+    func showLoading() {
+        showLoadingCalled = true
+    }
+    
+    func hideLoading() {
+        hideLoadingCalled = true
+    }
+    
+    func refreshList() {
+        refreshListCalled = true
+    }
+    
+    func showErrorAlert(_ message: String) {
+        showErrorAlertCalled = true
+    }
+    
+}
+

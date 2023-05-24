@@ -1,26 +1,47 @@
 class TvShowDetailsViewModel {
     
-    var viewControllerDelegate:TvShowDetailsViewControllerDelegate?
+    private var viewControllerDelegate:TvShowDetailsViewControllerDelegate?
     
-    var tvShow: TvShow
-    var seasons: [[Episode]] = []
-    var actors: [Actor] = []
+    private var tvShow: TvShow
+    private var seasons: [[Episode]] = []
+    private var actors: [Actor] = []
     
     let service: TvMazeServiceProtocol!
     
-    init(tvShow: TvShow, service: TvMazeServiceProtocol) {
+    init(tvShow: TvShow, service: TvMazeServiceProtocol, viewControllerDelegate: TvShowDetailsViewControllerDelegate) {
         self.tvShow = tvShow
         self.service = service
+        self.viewControllerDelegate = viewControllerDelegate
     }
     
     func loadData() {
-        loadActors()
-        loadEpisodes()
+        fetchActors()
+        fetchEpisodes()
     }
     
-    func loadActors() {
+    func getTvShow() -> TvShow {
+        return tvShow
+    }
+    
+    func getActorForIndex(index: Int) -> Actor {
+        return actors[index]
+    }
+    
+    func getNumberOfActors() -> Int {
+        return actors.count
+    }
+    
+    func getEpisodesForIndex(index: Int) -> [Episode] {
+        return seasons[index]
+    }
+    
+    func getNumberOfSeasons() -> Int {
+        return seasons.count
+    }
+    
+    func fetchActors() {
         viewControllerDelegate?.showActorsLoading()
-        service.getActors(tvShowId: tvShow.id) { [self] result in
+        service.getActors(tvShowId: tvShow.id ?? 0) { [self] result in
             viewControllerDelegate?.hideActorsLoading()
             do {
                 self.actors = try result.get()
@@ -31,9 +52,9 @@ class TvShowDetailsViewModel {
         }
     }
     
-    func loadEpisodes() {
+    func fetchEpisodes() {
         viewControllerDelegate?.showEpisodesLoading()
-        service.getEpisodes(id: tvShow.id) { [self] result in
+        service.getEpisodes(id: tvShow.id ?? 0) { [self] result in
             viewControllerDelegate?.hideEpisodesLoading()
             do {
                 self.seasons = prepareSeasonList(episodes: try result.get())
@@ -50,7 +71,7 @@ class TvShowDetailsViewModel {
             if seasons.isEmpty {
                 seasons.append([episode])
             } else {
-                var lastSeason = seasons[seasons.count - 1]
+                let lastSeason = seasons[seasons.count - 1]
                 
                 if lastSeason[0].season == episode.season {
                     seasons[seasons.count - 1].append(episode)
