@@ -8,10 +8,6 @@
 import UIKit
 
 protocol TvShowDetailsViewControllerDelegate {
-    func showActorsLoading()
-    func hideActorsLoading()
-    func showEpisodesLoading()
-    func hideEpisodesLoading()
     func refreshActorsList()
     func refreshEpisodesList()
     func showErrorAlert(_ message: String)
@@ -32,7 +28,6 @@ class TvShowDetailsViewController: UIViewController {
         super.viewDidLoad()
         viewModel.loadData()
         customView?.backButton.delegate = self
-        customView?.viewDelegate = self
         customView?.setupGenresCollection(delegate: self, dataSource: self)
         customView?.setupActorsCollection(delegate: self, dataSource: self)
         customView?.setupEpisodesTable(delegate: self, dataSource: self)
@@ -51,22 +46,6 @@ class TvShowDetailsViewController: UIViewController {
 
 extension TvShowDetailsViewController: TvShowDetailsViewControllerDelegate {
     
-    func showActorsLoading() {
-        
-    }
-    
-    func hideActorsLoading() {
-        
-    }
-    
-    func showEpisodesLoading() {
-        
-    }
-    
-    func hideEpisodesLoading() {
-        
-    }
-    
     func refreshActorsList() {
         customView?.actorsCollection.reloadData()
     }
@@ -78,10 +57,6 @@ extension TvShowDetailsViewController: TvShowDetailsViewControllerDelegate {
     func showErrorAlert(_ message: String) {
         AlertManager.showErrorAlert(sender: self, message: message)
     }
-    
-}
-
-extension TvShowDetailsViewController: TvShowDetailsViewDelegate {
     
 }
 

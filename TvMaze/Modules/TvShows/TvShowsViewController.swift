@@ -81,6 +81,7 @@ extension TvShowsViewController: UICollectionViewDelegate, UICollectionViewDataS
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TvShowCollectionCell.identifier, for: indexPath) as! TvShowCollectionCell
         guard let tvShow = viewModel?.getTvShowAtIndex(index: indexPath.row) else { return UICollectionViewCell() }
+        cell.prepareForReuse()
         cell.prepare(tvShow: tvShow)
         return cell
     }

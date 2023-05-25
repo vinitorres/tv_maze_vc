@@ -2,14 +2,8 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-protocol TvShowDetailsViewDelegate {
-    
-}
-
 class TvShowDetailsView: UIView {
-    
-    var viewDelegate: TvShowDetailsViewDelegate?
-    
+        
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         return scrollView
@@ -93,6 +87,7 @@ class TvShowDetailsView: UIView {
         let title = UILabel()
         title.textColor = UIColor.black
         title.text = "---"
+        title.numberOfLines = 0
         return title
     }()
     
@@ -141,7 +136,8 @@ class TvShowDetailsView: UIView {
     func prepare(tvShow: TvShow) {
         bannerImage.kf.setImage(with: tvShow.posterUrl)
         titleLabel.text = tvShow.name
-        summaryTextLabel.text = tvShow.summary
+        daysAndTimeTextLabel.text = "Start date: \(tvShow.premiered ?? "")\nEnd date: \(tvShow.ended ?? "")"
+        summaryTextLabel.text = tvShow.summary?.deleteHTMLTags()
         genresCollection.reloadData()
         genresCollection.layoutIfNeeded()
     }

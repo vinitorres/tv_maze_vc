@@ -1,10 +1,14 @@
+//
+//
+// Created by André Vinícius Torres Conrado
+//
+
+
 import UIKit
 import SnapKit
 import Kingfisher
 
-class TvShowCollectionCell: UICollectionViewCell {
-    
-    static let identifier: String = "TvShowCollectionCell"
+class TvShowCellView: UIView {
     
     lazy var bannerImage: UIImageView = {
         let imageView = UIImageView()
@@ -38,6 +42,11 @@ class TvShowCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func prepareForReuse() {
+        titleLabel.text = ""
+        bannerImage.image = UIImage(named: "image_placeholder")
+    }
+    
     func prepare(tvShow: TvShow) {
         titleLabel.text = tvShow.name
         bannerImage.kf.setImage(with: tvShow.posterUrl)
@@ -45,12 +54,12 @@ class TvShowCollectionCell: UICollectionViewCell {
     
 }
 
-extension TvShowCollectionCell: ViewConfiguration {
+extension TvShowCellView: ViewConfiguration {
     
     func buildViewHierarchy() {
-        self.contentView.addSubview(bannerImage)
-        self.contentView.addSubview(textBackgroundView)
-        self.contentView.addSubview(titleLabel)
+        self.addSubview(bannerImage)
+        self.addSubview(textBackgroundView)
+        self.addSubview(titleLabel)
     }
     
     func setupContraints() {
@@ -85,4 +94,3 @@ extension TvShowCollectionCell: ViewConfiguration {
     
     
 }
-

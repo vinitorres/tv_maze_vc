@@ -13,7 +13,7 @@ final class TvShowDetailsViewModelTests: XCTestCase {
     var mockService: TvMazeServiceMock!
     var mockTvShowDetailsViewController: TvShowDetailsViewControllerDelegateMock!
     
-    let tvShow = TvShow(id: 0, name: "Nome 1", image: ["Image": "url"], genres: ["teste1", "teste2"], summary: "description 1")
+    let tvShow = TvShow(id: 0, name: "Nome 1", image: ["Image": "url"], premiered: "", ended: "", genres: ["teste1", "teste2"],summary: "description 1")
     
     override func setUpWithError() throws {
         mockService = TvMazeServiceMock()
@@ -35,8 +35,6 @@ final class TvShowDetailsViewModelTests: XCTestCase {
         mockService.getActorsResult = .success(list)
         sut.fetchActors()
 
-        XCTAssertTrue(mockTvShowDetailsViewController.showActorsLoadingCalled)
-        XCTAssertTrue(mockTvShowDetailsViewController.hideActorsLoadingCalled)
         XCTAssertEqual(sut.getNumberOfActors(), list.count)
         XCTAssertTrue(mockTvShowDetailsViewController.refreshActorsListCalled)
     }
@@ -45,8 +43,6 @@ final class TvShowDetailsViewModelTests: XCTestCase {
         mockService.getActorsResult = .failure(NSError(domain: "com.test.error", code: 0))
         sut.fetchActors()
 
-        XCTAssertTrue(mockTvShowDetailsViewController.showActorsLoadingCalled)
-        XCTAssertTrue(mockTvShowDetailsViewController.hideActorsLoadingCalled)
         XCTAssertTrue(mockTvShowDetailsViewController.showErrorAlertCalled)
     }
     
@@ -56,10 +52,8 @@ final class TvShowDetailsViewModelTests: XCTestCase {
         let list: [Episode] = [episode1, episode2]
 
         mockService.getEpisodesResult = .success(list)
-        sut.fetchActors()
+        sut.fetchEpisodes()
 
-        XCTAssertTrue(mockTvShowDetailsViewController.showEpisodesLoadingCalled)
-        XCTAssertTrue(mockTvShowDetailsViewController.hideEpisodesLoadingCalled)
         XCTAssertEqual(sut.getNumberOfSeasons(), 1)
         XCTAssertTrue(mockTvShowDetailsViewController.refreshEpisodesListCalled)
     }
@@ -68,37 +62,16 @@ final class TvShowDetailsViewModelTests: XCTestCase {
         mockService.getEpisodesResult = .failure(NSError(domain: "com.test.error", code: 0))
         sut.fetchEpisodes()
 
-        XCTAssertTrue(mockTvShowDetailsViewController.showEpisodesLoadingCalled)
-        XCTAssertTrue(mockTvShowDetailsViewController.hideEpisodesLoadingCalled)
         XCTAssertTrue(mockTvShowDetailsViewController.showErrorAlertCalled)
     }
     
 }
 
 class TvShowDetailsViewControllerDelegateMock: TvShowDetailsViewControllerDelegate {
-    var showActorsLoadingCalled = false
-    var hideActorsLoadingCalled = false
-    var showEpisodesLoadingCalled = false
-    var hideEpisodesLoadingCalled = false
+
     var refreshActorsListCalled = false
     var refreshEpisodesListCalled = false
     var showErrorAlertCalled = false
-
-    func showActorsLoading() {
-        showActorsLoadingCalled = true
-    }
-    
-    func hideActorsLoading() {
-        hideActorsLoadingCalled = true
-    }
-    
-    func showEpisodesLoading() {
-        showEpisodesLoadingCalled = true
-    }
-    
-    func hideEpisodesLoading() {
-        hideEpisodesLoadingCalled = true
-    }
     
     func refreshActorsList() {
         refreshActorsListCalled = true

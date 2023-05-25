@@ -89,7 +89,7 @@ class EpisodeDetailsView: UIView {
         bannerImage.kf.setImage(with: episode.poster)
         titleLabel.text = episode.name
         seasonLabel.text = "Season \(episode.season) - Episode \(episode.number)"
-        summaryTextLabel.text = episode.summary
+        summaryTextLabel.text = episode.summary.deleteHTMLTags()
     }
     
     override init(frame: CGRect) {

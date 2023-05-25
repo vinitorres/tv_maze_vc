@@ -40,9 +40,7 @@ class TvShowDetailsViewModel {
     }
     
     func fetchActors() {
-        viewControllerDelegate?.showActorsLoading()
         service.getActors(tvShowId: tvShow.id ?? 0) { [self] result in
-            viewControllerDelegate?.hideActorsLoading()
             do {
                 self.actors = try result.get()
                 self.viewControllerDelegate?.refreshActorsList()
@@ -53,9 +51,7 @@ class TvShowDetailsViewModel {
     }
     
     func fetchEpisodes() {
-        viewControllerDelegate?.showEpisodesLoading()
         service.getEpisodes(id: tvShow.id ?? 0) { [self] result in
-            viewControllerDelegate?.hideEpisodesLoading()
             do {
                 self.seasons = prepareSeasonList(episodes: try result.get())
                 self.viewControllerDelegate?.refreshEpisodesList()

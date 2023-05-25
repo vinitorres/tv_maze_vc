@@ -26,8 +26,8 @@ final class TvShowsViewModelTests: XCTestCase {
     }
 
     func testFechtTvShowsSuccess() {
-        let tvShow1 = TvShow(id: 0, name: "Nome 1", image: ["Image": "url"], genres: ["teste1", "teste2"], summary: "description 1")
-        let tvShow2 = TvShow(id: 1, name: "Nome 2", image: ["Image": "url"], genres: ["teste1", "teste2"], summary: "description 2")
+        let tvShow1 = TvShow(id: 0, name: "Nome 1", image: ["Image": "url"],premiered: "", ended: "", genres: ["teste1", "teste2"], summary: "description 1")
+        let tvShow2 = TvShow(id: 1, name: "Nome 2", image: ["Image": "url"],premiered: "", ended: "", genres: ["teste1", "teste2"], summary: "description 2")
         let list: [TvShow] = [tvShow1, tvShow2]
 
         mockService.getTvShowsResult = .success(list)
@@ -49,8 +49,8 @@ final class TvShowsViewModelTests: XCTestCase {
     }
     
     func testGetTvShowAtIndex() {
-        let tvShow1 = TvShow(id: 0, name: "Nome 1", image: ["Image": "url"], genres: ["teste1", "teste2"], summary: "description 1")
-        let tvShow2 = TvShow(id: 1, name: "Nome 2", image: ["Image": "url"], genres: ["teste1", "teste2"], summary: "description 2")
+        let tvShow1 = TvShow(id: 0, name: "Nome 1", image: ["Image": "url"],premiered: "", ended: "", genres: ["teste1", "teste2"], summary: "description 1")
+        let tvShow2 = TvShow(id: 1, name: "Nome 2", image: ["Image": "url"],premiered: "", ended: "", genres: ["teste1", "teste2"], summary: "description 2")
         let list: [TvShow] = [tvShow1, tvShow2]
 
         mockService.getTvShowsResult = .success(list)
