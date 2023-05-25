@@ -117,7 +117,7 @@ extension TvShowDetailsViewController: UICollectionViewDelegate, UICollectionVie
         }
     }
     
-}
+} 
 
 extension TvShowDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -129,7 +129,7 @@ extension TvShowDetailsViewController: UITableViewDelegate, UITableViewDataSourc
         cell.prepare(season: viewModel.getEpisodesForIndex(index: indexPath.row)) { episode in
             let controller = EpisodeDetailsViewController.assembleModule(episode: episode)
             controller.modalPresentationStyle = .overFullScreen
-            self.present(controller, animated: true)
+            self.present(controller, animated: false)
         }
      
         return cell

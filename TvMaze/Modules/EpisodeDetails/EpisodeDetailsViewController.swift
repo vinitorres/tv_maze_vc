@@ -13,7 +13,9 @@ class EpisodeDetailsViewController: UIViewController {
         
     public override func loadView() {
         self.customView = EpisodeDetailsView()
-        self.customView?.prepare(episode: viewModel.getEpisode())
+        self.customView?.prepare(episode: viewModel.getEpisode()) {
+            self.dismiss(animated: false)
+        }
         self.view = customView
     }
     

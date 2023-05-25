@@ -10,6 +10,16 @@ import SnapKit
 
 class EpisodeDetailsView: UIView {
     
+    var onClose: (() -> Void)?
+    
+    lazy var mainView: UIView = {
+        let view = UIView(frame: CGRect.zero)
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 8
+        view.clipsToBounds = true
+        return view
+    }()
+    
     lazy var mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 16
@@ -36,59 +46,79 @@ class EpisodeDetailsView: UIView {
     }()
     
     lazy var titleLabel: UILabel = {
-        let title = UILabel()
-        title.textColor = UIColor.black
-        title.font = UIFont.boldSystemFont(ofSize: 22)
-        title.numberOfLines = 2
-        return title
+        let label = UILabel()
+        label.textColor = UIColor.black
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        return label
     }()
     
     lazy var seasonLabel: UILabel = {
-        let title = UILabel()
-        title.textColor = UIColor.black
-        title.font = UIFont.systemFont(ofSize: 22)
-        title.numberOfLines = 2
-        return title
+        let label = UILabel()
+        label.textColor = UIColor.black
+        label.font = UIFont.systemFont(ofSize: 14)
+        return label
     }()
         
     lazy var summaryLabel: UILabel = {
-        let title = UILabel()
-        title.textColor = UIColor.black
-        title.text = "Summary"
-        title.font = UIFont.boldSystemFont(ofSize: 18)
-        return title
+        let label = UILabel()
+        label.textColor = UIColor.black
+        label.text = "Summary"
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        return label
     }()
     
     lazy var summaryTextLabel: UILabel = {
-        let title = UILabel()
-        title.textColor = UIColor.black
-        title.text = "AH S9HDOAHSDHAJSHDAHSDHJI JASID J{AJS9 FJ0SDJ F0AWJDS0[ J[j 90fsdj09f js09djf 90sjd9 f0js90dj fjs0d fsda f"
-        title.font = UIFont.systemFont(ofSize: 14)
-        return title
+        let label = UILabel()
+        label.textColor = UIColor.black
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.numberOfLines = 0
+        return label
     }()
     
-    lazy var backButton: CustomBackButton = {
-        let customBackButton = CustomBackButton()
-        return customBackButton
+    lazy var closeButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .black
+        button.setTitle("Close", for: .normal)
+        button.addTarget(self, action: #selector(onCloseTapped), for: .touchUpInside)
+        button.setTitleColor(.white, for: .normal)
+        return button
     }()
     
-    func prepare(episode: Episode) {
-        //bannerImage.kf.setImage(with: episode.image)
+    func prepare(episode: Episode, onClose:(() -> Void)?) {
+        self.onClose = onClose
+        bannerImage.kf.setImage(with: episode.poster)
         titleLabel.text = episode.name
+        seasonLabel.text = "Season \(episode.season) - Episode \(episode.number)"
         summaryTextLabel.text = episode.summary
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func onCloseTapped() {
+        onClose?()
     }
 }
 
 extension EpisodeDetailsView: ViewConfiguration {
     
     func buildViewHierarchy() {
-        addSubview(mainStackView)
+        addSubview(mainView)
+        mainView.addSubview(mainStackView)
         
         mainStackView.addArrangedSubview(bannerImage)
         mainStackView.addArrangedSubview(infoContainerView)
-        
+        mainStackView.addArrangedSubview(closeButton)
+
         infoContainerView.addSubview(infoStackView)
-        
+
         infoStackView.addArrangedSubview(titleLabel)
         infoStackView.addArrangedSubview(seasonLabel)
         infoStackView.addArrangedSubview(summaryLabel)
@@ -96,15 +126,24 @@ extension EpisodeDetailsView: ViewConfiguration {
     }
     
     func setupContraints() {
+        configMainViewConstraints()
         configMainStackViewConstraints()
         configInfoStackViewConstraints()
         configBannerImageConstraints()
+        configCloseButtonConstraints()
+    }
+    
+    func configMainViewConstraints() {
+        let screenWidth = UIScreen.main.bounds.width
+        mainView.snp.makeConstraints { make in
+            make.center.equalTo(self.snp.center)
+            make.width.equalTo(screenWidth - 40)
+        }
     }
     
     func configMainStackViewConstraints() {
         mainStackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-            make.width.equalTo(self.snp.width)
         }
     }
     
@@ -118,7 +157,13 @@ extension EpisodeDetailsView: ViewConfiguration {
     
     func configBannerImageConstraints() {
         bannerImage.snp.makeConstraints { make in
-            make.height.equalTo(200)
+            make.height.equalTo(300)
+        }
+    }
+    
+    func configCloseButtonConstraints() {
+        bannerImage.snp.makeConstraints { make in
+            make.height.equalTo(60)
         }
     }
     
