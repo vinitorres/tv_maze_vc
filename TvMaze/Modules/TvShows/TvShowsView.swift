@@ -15,11 +15,8 @@ class TvShowsView: UIView {
         textfield.autocorrectionType = UITextAutocorrectionType.no
         textfield.autocapitalizationType = UITextAutocapitalizationType.none
         textfield.spellCheckingType = UITextSpellCheckingType.no
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        imageView.image = UIImage(systemName: "magnifyingglass")
-        imageView.tintColor = UIColor.black
-        imageView.contentMode = .scaleAspectFit
-        textfield.leftView = imageView
+        let padding = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 0))
+        textfield.leftView = padding
         return textfield
     }()
     
