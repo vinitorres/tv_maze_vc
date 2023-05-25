@@ -126,7 +126,12 @@ extension TvShowDetailsViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: EpisodesTableCell.identifier, for: indexPath) as! EpisodesTableCell
-        cell.prepare(season: viewModel.getEpisodesForIndex(index: indexPath.row))
+        cell.prepare(season: viewModel.getEpisodesForIndex(index: indexPath.row)) { episode in
+            let controller = EpisodeDetailsViewController.assembleModule(episode: episode)
+            controller.modalPresentationStyle = .overFullScreen
+            self.present(controller, animated: true)
+        }
+     
         return cell
     }
     

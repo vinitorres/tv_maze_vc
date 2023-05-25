@@ -93,7 +93,6 @@ extension EpisodeDetailsView: ViewConfiguration {
         infoStackView.addArrangedSubview(seasonLabel)
         infoStackView.addArrangedSubview(summaryLabel)
         infoStackView.addArrangedSubview(summaryTextLabel)
-
     }
     
     func setupContraints() {
@@ -118,12 +117,9 @@ extension EpisodeDetailsView: ViewConfiguration {
     }
     
     func configBannerImageConstraints() {
-//        bannerImage.snp.makeConstraints { make in
-//            make.top.equalTo(imageContainerView.snp.top)
-//            make.bottom.equalTo(imageContainerView.snp.bottom)
-//            make.leading.equalTo(imageContainerView.snp.leading)
-//            make.trailing.equalTo(imageContainerView.snp.trailing)
-//        }
+        bannerImage.snp.makeConstraints { make in
+            make.height.equalTo(200)
+        }
     }
     
 }

@@ -10,7 +10,8 @@ class EpisodesTableCell: UITableViewCell {
     static let identifier: String = "EpisodesTableCell"
     
     var seasonEpisodes: [Episode] = []
-    
+    var onSelected:((_ episode: Episode) -> Void)?
+
     lazy var customView: EpisodesCellView = EpisodesCellView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -23,8 +24,8 @@ class EpisodesTableCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func prepare(season: [Episode]) {
-        customView.prepare(season: season)
+    func prepare(season: [Episode], onSelected:((_ episode: Episode) -> Void)?) {
+        customView.prepare(season: season, onSelected: onSelected)
     }
 }
 

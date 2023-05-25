@@ -7,7 +7,9 @@ import UIKit
 import SnapKit
 
 class EpisodesCellView: UIView {
-        
+    
+    var onSelected:((_ episode: Episode) -> Void)?
+    
     var seasonEpisodes: [Episode] = []
     
     lazy var episodesCollection: UICollectionView = {
@@ -33,7 +35,8 @@ class EpisodesCellView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func prepare(season: [Episode]) {
+    func prepare(season: [Episode], onSelected:((_ episode: Episode) -> Void)?) {
+        self.onSelected = onSelected
         seasonEpisodes = season
         seasonLabel.text = "Season \(season.first?.season ?? 0)"
         episodesCollection.reloadData()
@@ -80,6 +83,10 @@ extension EpisodesCellView: UICollectionViewDelegate, UICollectionViewDataSource
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EpisodeCollectionCell.identifier, for: indexPath) as! EpisodeCollectionCell
         cell.prepare(episode: seasonEpisodes[indexPath.row])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.onSelected?(seasonEpisodes[indexPath.row])
     }
     
 }

@@ -490,7 +490,7 @@
 				24E5780E29A837B400560943 /* Sources */,
 				24E5781029A837B400560943 /* Resources */,
 				2C30BAE1ADF3EAC7C8F27933 /* Frameworks */,
-				8A894CD3012404A3E3CCA1E8 /* [CP] Embed Pods Frameworks */,
+				FE7371473813A5D2078E8AFA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -554,9 +554,9 @@
 			);
 			mainGroup = 24E577F329A837B200560943;
 			packageReferences = (
-				246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire" */,
-				24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit" */,
-				247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire.git" */,
+				24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit.git" */,
+				247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
 			);
 			productRefGroup = 24E577FD29A837B200560943 /* Products */;
 			projectDirPath = "";
@@ -596,23 +596,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8A894CD3012404A3E3CCA1E8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TvMazeTests/Pods-TvMazeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TvMazeTests/Pods-TvMazeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TvMazeTests/Pods-TvMazeTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A74CD53D1A7B273EFA71646D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -677,6 +660,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE7371473813A5D2078E8AFA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TvMazeTests/Pods-TvMazeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TvMazeTests/Pods-TvMazeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TvMazeTests/Pods-TvMazeTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1074,7 +1074,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1082,7 +1082,7 @@
 				kind = branch;
 			};
 		};
-		247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -1090,7 +1090,7 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -1103,17 +1103,17 @@
 /* Begin XCSwiftPackageProductDependency section */
 		246878DF29AFF32E00EAC81A /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 246878DE29AFF32E00EAC81A /* XCRemoteSwiftPackageReference "Alamofire.git" */;
 			productName = Alamofire;
 		};
 		247FE6C629B1CA760066BD5D /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 247FE6C529B1CA760066BD5D /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
 			productName = Kingfisher;
 		};
 		24A0BDA029B081820099F09A /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 24A0BD9F29B081820099F09A /* XCRemoteSwiftPackageReference "SnapKit.git" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

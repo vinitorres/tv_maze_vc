@@ -9,10 +9,11 @@ import UIKit
 class EpisodeDetailsViewController: UIViewController {
     
     private var customView: EpisodeDetailsView?
-    private var viewModel: EpisodeDetailsViewModel?
+    private var viewModel: EpisodeDetailsViewModel!
         
     public override func loadView() {
         self.customView = EpisodeDetailsView()
+        self.customView?.prepare(episode: viewModel.getEpisode())
         self.view = customView
     }
     
