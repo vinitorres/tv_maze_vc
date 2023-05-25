@@ -1,13 +1,17 @@
-class TvShowsViewModel {
+public class TvShowsViewModel {
     
-    var viewControllerDelegate:TvShowsViewControllerDelegate?
-    var tvShows: [TvShow] = []
+    private var viewControllerDelegate:TvShowsViewControllerDelegate?
+    private var tvShows: [TvShow] = []
+    private var tvMazeService: TvMazeServiceProtocol!
     
-    let tvMazeService = TvMazeService()
+    public init(service: TvMazeServiceProtocol, viewControllerDelegate: TvShowsViewControllerDelegate) {
+        self.tvMazeService = service
+        self.viewControllerDelegate = viewControllerDelegate
+    }
     
-    func loadData() {
+    public func fetchTvShows(page: Int) {
         viewControllerDelegate?.showLoading()
-        tvMazeService.getTvShows { [self] result in
+        tvMazeService.getTvShows(page: page) { [self] result in
             viewControllerDelegate?.hideLoading()
             do {
                 self.tvShows = try result.get()
@@ -16,7 +20,27 @@ class TvShowsViewModel {
                 viewControllerDelegate?.showErrorAlert(error.localizedDescription)
             }
         }
-        
+    }
+    
+    public func searchTvShow(query: String) {
+        viewControllerDelegate?.showLoading()
+        tvMazeService.searchTvShow(query: query.lowercased()) { [self] result in
+            viewControllerDelegate?.hideLoading()
+            do {
+                self.tvShows = try result.get()
+                self.viewControllerDelegate?.refreshList()
+            } catch (let error ){
+                viewControllerDelegate?.showErrorAlert(error.localizedDescription)
+            }
+        }
+    }
+    
+    public func getTvShowAtIndex(index: Int) -> TvShow {
+        return tvShows[index]
+    }
+    
+    public func getNumberOfRows() -> Int {
+        return tvShows.count
     }
     
 }

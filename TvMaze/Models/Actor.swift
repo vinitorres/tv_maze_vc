@@ -1,6 +1,6 @@
 import Foundation
 
-struct Actor: Decodable {
+public struct Actor: Codable {
     let id: Int
     let name: String
     var image: [String: String]

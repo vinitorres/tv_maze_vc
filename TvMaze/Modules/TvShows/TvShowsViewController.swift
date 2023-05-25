@@ -1,76 +1,92 @@
 import UIKit
 
-protocol TvShowsViewControllerDelegate {
+public protocol TvShowsViewControllerDelegate {
     func showLoading()
     func hideLoading()
     func refreshList()
     func showErrorAlert(_ message: String)
 }
 
-class TvShowsViewController: UIViewController {
+final public class TvShowsViewController: UIViewController {
     
-    var customView: TvShowsView?
-    var viewModel: TvShowsViewModel?
+    private var customView: TvShowsView?
+    private var viewModel: TvShowsViewModel?
     
-    override func loadView() {
+    private var page = 0
+    
+    public override func loadView() {
         self.customView = TvShowsView()
         self.view = customView
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "TV Shows"
-        viewModel?.viewControllerDelegate = self
-        viewModel?.loadData()
+        viewModel?.fetchTvShows(page: page)
+        customView?.setSearchFieldDelegate(self)
         customView?.setCollectionViewDelegate(self)
         customView?.setCollectionViewDataSource(self)
     }
     
     static func assembleModule() -> UIViewController {
         let viewController = TvShowsViewController()
-        let viewModel = TvShowsViewModel()
+        let service = TvMazeService()
+        let viewModel = TvShowsViewModel(service: service, viewControllerDelegate: viewController)
         viewController.viewModel = viewModel
         return viewController
+    }
+    
+    func searchTvShows(_ query: String) {
+        viewModel?.searchTvShow(query: query)
     }
 
 }
 
+extension TvShowsViewController: UITextFieldDelegate {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if let query = textField.text {
+            searchTvShows(query)
+        }
+        return true
+    }
+}
+
 extension TvShowsViewController: TvShowsViewControllerDelegate {
     
-    func showLoading() {
+    public func showLoading() {
         customView?.showLoading()
     }
     
-    func hideLoading() {
+    public func hideLoading() {
         customView?.hideLoading()
     }
     
-    func refreshList() {
+    public func refreshList() {
         customView?.collectionView.reloadData()
     }
     
-    func showErrorAlert(_ message: String) {
-        let alertError = UIAlertController(title: "Erro", message: message, preferredStyle: .alert)
-        self.present(alertError, animated: true, completion: nil)
+    public func showErrorAlert(_ message: String) {
+        AlertManager.showErrorAlert(sender: self, message: message)
     }
     
 }
 
 extension TvShowsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel?.tvShows.count ?? 0
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel?.getNumberOfRows() ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TvShowCollectionCell.identifier, for: indexPath) as! TvShowCollectionCell
-        guard let tvShow = viewModel?.tvShows[indexPath.row] else { return UICollectionViewCell() }
+        guard let tvShow = viewModel?.getTvShowAtIndex(index: indexPath.row) else { return UICollectionViewCell() }
         cell.prepare(tvShow: tvShow)
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let tvShowSelected = viewModel?.tvShows[indexPath.row] else { return }
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let tvShowSelected = viewModel?.getTvShowAtIndex(index: indexPath.row) else { return }
         let vc = TvShowDetailsViewController.assembleModule(tvShow: tvShowSelected)
         self.navigationController?.show(vc , sender: self)
     }

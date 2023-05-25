@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct Episode: Decodable {
+public struct Episode: Decodable {
     let id: Int
     let name: String
     let number: Int

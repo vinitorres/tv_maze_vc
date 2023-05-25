@@ -24,13 +24,12 @@ class TvShowDetailsViewController: UIViewController {
     
     override func loadView() {
         self.customView = TvShowDetailsView()
-        self.customView?.prepare(tvShow: viewModel.tvShow)
+        self.customView?.prepare(tvShow: viewModel.getTvShow())
         self.view = customView
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.viewControllerDelegate = self
         viewModel.loadData()
         customView?.backButton.delegate = self
         customView?.viewDelegate = self
@@ -42,7 +41,8 @@ class TvShowDetailsViewController: UIViewController {
     
     static func assembleModule(tvShow: TvShow) -> UIViewController {
         let viewController = TvShowDetailsViewController()
-        let viewModel = TvShowDetailsViewModel(tvShow: tvShow)
+        let service = TvMazeService()
+        let viewModel = TvShowDetailsViewModel(tvShow: tvShow, service: service, viewControllerDelegate: viewController)
         viewController.viewModel = viewModel
         return viewController
     }
@@ -76,7 +76,7 @@ extension TvShowDetailsViewController: TvShowDetailsViewControllerDelegate {
     }
     
     func showErrorAlert(_ message: String) {
-        
+        AlertManager.showErrorAlert(sender: self, message: message)
     }
     
 }
@@ -98,9 +98,9 @@ extension TvShowDetailsViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case customView?.actorsCollection:
-            return viewModel.actors.count
+            return viewModel.getNumberOfActors()
         default:
-            return viewModel.tvShow.genres.count
+            return viewModel.getTvShow().genres?.count ?? 0
         }
     }
     
@@ -108,29 +108,35 @@ extension TvShowDetailsViewController: UICollectionViewDelegate, UICollectionVie
         switch collectionView {
         case customView?.actorsCollection:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ActorCollectionCell.identifier, for: indexPath) as! ActorCollectionCell
-            cell.prepare(actor: viewModel.actors[indexPath.row])
+            cell.prepare(actor: viewModel.getActorForIndex(index: indexPath.row))
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenreCollectionCell.identifier, for: indexPath) as! GenreCollectionCell
-            cell.prepare(genre: viewModel.tvShow.genres[indexPath.row])
+            cell.prepare(genre: viewModel.getTvShow().genres![indexPath.row])
             return cell
         }
     }
     
-}
+} 
 
 extension TvShowDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.seasons.count
+        return viewModel.getNumberOfSeasons()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: EpisodesTableCell.identifier, for: indexPath) as! EpisodesTableCell
-        cell.prepare(season: viewModel.seasons[indexPath.count])
+        cell.prepare(season: viewModel.getEpisodesForIndex(index: indexPath.row)) { episode in
+            let controller = EpisodeDetailsViewController.assembleModule(episode: episode)
+            controller.modalPresentationStyle = .overFullScreen
+            self.present(controller, animated: false)
+        }
+     
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 220
     }
+    
 }

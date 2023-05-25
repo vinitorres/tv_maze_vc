@@ -1,4 +1,6 @@
 import UIKit
+import SnapKit
+import Kingfisher
 
 protocol TvShowDetailsViewDelegate {
     
@@ -13,13 +15,23 @@ class TvShowDetailsView: UIView {
         return scrollView
     }()
     
-    lazy var stackView: UIStackView = {
+    lazy var mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 16
         stackView.distribution = .fill
         stackView.axis = .vertical
         return stackView
     }()
+    
+    lazy var infoStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 16
+        stackView.distribution = .fill
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
+    lazy var infoContainerView = UIView()
     
     lazy var imageContainerView: UIView = {
         let height = UIScreen.main.bounds.height * 0.4
@@ -42,28 +54,23 @@ class TvShowDetailsView: UIView {
     lazy var titleLabel: UILabel = {
         let title = UILabel()
         title.textColor = UIColor.black
-        title.font = UIFont.boldSystemFont(ofSize: 20)
+        title.font = UIFont.boldSystemFont(ofSize: 22)
         title.numberOfLines = 2
         return title
     }()
     
     lazy var genresCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout.init()
-        layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = 16
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.estimatedItemSize = UICollectionView.layoutFittingExpandedSize
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.automaticallyAdjustsScrollIndicatorInsets = false
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: GenreFlowLayout())
         collection.register(GenreCollectionCell.self, forCellWithReuseIdentifier: GenreCollectionCell.identifier)
+        collection.showsHorizontalScrollIndicator = false
         return collection
     }()
-    
+        
     lazy var summaryLabel: UILabel = {
         let title = UILabel()
         title.textColor = UIColor.black
         title.text = "Summary"
-        title.font = UIFont.boldSystemFont(ofSize: 16)
+        title.font = UIFont.boldSystemFont(ofSize: 18)
         return title
     }()
     
@@ -77,7 +84,7 @@ class TvShowDetailsView: UIView {
     lazy var daysAndTimeLabel: UILabel = {
         let title = UILabel()
         title.textColor = UIColor.black
-        title.font = UIFont.boldSystemFont(ofSize: 16)
+        title.font = UIFont.boldSystemFont(ofSize: 18)
         title.text = "Days and Time"
         return title
     }()
@@ -92,37 +99,35 @@ class TvShowDetailsView: UIView {
     lazy var castLabel: UILabel = {
         let title = UILabel()
         title.text = "Cast"
-        title.font = UIFont.boldSystemFont(ofSize: 16)
+        title.font = UIFont.boldSystemFont(ofSize: 18)
         title.textColor = UIColor.black
         return title
     }()
     
     lazy var actorsCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout.init()
-        layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = 16
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: CastFlowLayout())
         collection.register(ActorCollectionCell.self, forCellWithReuseIdentifier: ActorCollectionCell.identifier)
+        collection.showsHorizontalScrollIndicator = false
         return collection
     }()
     
     lazy var episodesLabel: UILabel = {
         let title = UILabel()
         title.text = "Episodes"
-        title.font = UIFont.boldSystemFont(ofSize: 16)
+        title.font = UIFont.boldSystemFont(ofSize: 18)
         title.textColor = UIColor.black
         return title
     }()
     
-    lazy var episodesTable: UITableView = {
-        let table = UITableView()
+    lazy var episodesTable: AutoSizeTableView = {
+        let table = AutoSizeTableView()
         table.isScrollEnabled = false
         table.backgroundColor = UIColor.yellow
+        table.separatorStyle = .none
         table.register(EpisodesTableCell.self, forCellReuseIdentifier: EpisodesTableCell.identifier)
         return table
     }()
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
@@ -156,33 +161,42 @@ class TvShowDetailsView: UIView {
         episodesTable.dataSource = dataSource
     }
     
+    func refreshTableViewSize() {
+        episodesTable.reloadData()
+    }
+    
 }
 
 extension TvShowDetailsView: ViewConfiguration {
     
     func buildViewHierarchy() {
         addSubview(scrollView)
-        scrollView.addSubview(stackView)
+        scrollView.addSubview(mainStackView)
         
         imageContainerView.addSubview(bannerImage)
         imageContainerView.addSubview(backButton)
         
-        stackView.addArrangedSubview(imageContainerView)
-        stackView.addArrangedSubview(titleLabel)
-        stackView.addArrangedSubview(genresCollection)
-        stackView.addArrangedSubview(summaryLabel)
-        stackView.addArrangedSubview(summaryTextLabel)
-        stackView.addArrangedSubview(daysAndTimeLabel)
-        stackView.addArrangedSubview(daysAndTimeTextLabel)
-        stackView.addArrangedSubview(castLabel)
-        stackView.addArrangedSubview(actorsCollection)
-        stackView.addArrangedSubview(episodesLabel)
-        stackView.addArrangedSubview(episodesTable)
+        mainStackView.addArrangedSubview(imageContainerView)
+        mainStackView.addArrangedSubview(infoContainerView)
+        
+        infoContainerView.addSubview(infoStackView)
+        
+        infoStackView.addArrangedSubview(titleLabel)
+        infoStackView.addArrangedSubview(genresCollection)
+        infoStackView.addArrangedSubview(summaryLabel)
+        infoStackView.addArrangedSubview(summaryTextLabel)
+        infoStackView.addArrangedSubview(daysAndTimeLabel)
+        infoStackView.addArrangedSubview(daysAndTimeTextLabel)
+        infoStackView.addArrangedSubview(castLabel)
+        infoStackView.addArrangedSubview(actorsCollection)
+        infoStackView.addArrangedSubview(episodesLabel)
+        infoStackView.addArrangedSubview(episodesTable)
     }
     
     func setupContraints() {
         configScrollViewConstraints()
-        configStackViewConstraints()
+        configMainStackViewConstraints()
+        configInfoStackViewConstraints()
         configImageContainerViewConstraints()
         configBannerImageConstraints()
         configbackButtonConstraints()
@@ -199,10 +213,18 @@ extension TvShowDetailsView: ViewConfiguration {
         }
     }
     
-    func configStackViewConstraints() {
-        stackView.snp.makeConstraints { make in
+    func configMainStackViewConstraints() {
+        mainStackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalTo(self.snp.width)
+        }
+    }
+    
+    func configInfoStackViewConstraints() {
+        infoStackView.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview()
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().inset(16)
         }
     }
     
@@ -231,7 +253,7 @@ extension TvShowDetailsView: ViewConfiguration {
     
     func configGenresCollectionConstraints() {
         genresCollection.snp.makeConstraints { make in
-            make.height.equalTo(60)
+            make.height.greaterThanOrEqualTo(60).priority(.high)
         }
     }
     

@@ -19,7 +19,7 @@ class GenreCellView: UIView {
         self.clipsToBounds = true
         self.layer.borderWidth = 0.5
         self.layer.borderColor = UIColor.black.cgColor
-        self.layer.cornerRadius = 15
+        self.layer.cornerRadius = 20
         setupView()
     }
     
@@ -46,17 +46,15 @@ extension GenreCellView: ViewConfiguration {
     
     func configViewConstraints() {
         self.snp.makeConstraints { make in
-            make.height.equalTo(48)
+            make.height.equalTo(40)
         }
     }
     
     func configNameLabelConstraints() {
         nameLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.top.equalTo(self.snp.top).offset(4)
-            make.bottom.equalTo(self.snp.bottom).offset(4)
-            make.leading.equalTo(self.snp.leading).offset(8)
-            make.trailing.equalTo(self.snp.trailing).inset(8)
+            make.leading.equalTo(self.snp.leading).offset(12)
+            make.trailing.equalTo(self.snp.trailing).inset(12)
         }
     }
     

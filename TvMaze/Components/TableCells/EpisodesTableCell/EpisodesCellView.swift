@@ -1,22 +1,19 @@
 //
-//  EpisodesTableCell.swift
-//  TvMaze
+//
+// Created by André Vinícius Torres Conrado
 //
 
 import UIKit
+import SnapKit
 
-class EpisodesTableCell: UITableViewCell {
+class EpisodesCellView: UIView {
     
-    static let identifier: String = "EpisodesTableCell"
+    var onSelected:((_ episode: Episode) -> Void)?
     
     var seasonEpisodes: [Episode] = []
     
     lazy var episodesCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout.init()
-        layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = 16
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: EpisodesFlowLayout())
         collection.register(EpisodeCollectionCell.self, forCellWithReuseIdentifier: EpisodeCollectionCell.identifier)
         collection.delegate = self
         collection.dataSource = self
@@ -28,9 +25,9 @@ class EpisodesTableCell: UITableViewCell {
         title.textColor = UIColor.black
         return title
     }()
-
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupView()
     }
     
@@ -38,18 +35,19 @@ class EpisodesTableCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func prepare(season: [Episode]) {
+    func prepare(season: [Episode], onSelected:((_ episode: Episode) -> Void)?) {
+        self.onSelected = onSelected
         seasonEpisodes = season
         seasonLabel.text = "Season \(season.first?.season ?? 0)"
         episodesCollection.reloadData()
     }
 }
 
-extension EpisodesTableCell: ViewConfiguration {
+extension EpisodesCellView: ViewConfiguration {
     
     func buildViewHierarchy() {
-        self.contentView.addSubview(seasonLabel)
-        self.contentView.addSubview(episodesCollection)
+        addSubview(seasonLabel)
+        addSubview(episodesCollection)
     }
     
     func setupContraints() {
@@ -59,24 +57,24 @@ extension EpisodesTableCell: ViewConfiguration {
     
     func setupSeasonLabelConstraints() {
         seasonLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(8)
-            make.leading.equalToSuperview().offset(8)
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview()
         }
     }
     
     func setupEpisodesCollectionConstraints() {
         episodesCollection.snp.makeConstraints { make in
             make.top.equalTo(seasonLabel.snp.bottom).offset(8)
-            make.bottom.equalTo(self.contentView.snp.bottom).offset(8)
-            make.leading.equalTo(self.contentView.snp.leading)
-            make.trailing.equalTo(self.contentView.snp.trailing)
+            make.bottom.equalTo(self.snp.bottom).offset(8)
+            make.leading.equalTo(self.snp.leading)
+            make.trailing.equalTo(self.snp.trailing)
             make.height.equalTo(180)
         }
     }
 
 }
 
-extension EpisodesTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension EpisodesCellView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return seasonEpisodes.count
     }
@@ -85,6 +83,10 @@ extension EpisodesTableCell: UICollectionViewDelegate, UICollectionViewDataSourc
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EpisodeCollectionCell.identifier, for: indexPath) as! EpisodeCollectionCell
         cell.prepare(episode: seasonEpisodes[indexPath.row])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.onSelected?(seasonEpisodes[indexPath.row])
     }
     
 }

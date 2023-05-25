@@ -1,20 +1,19 @@
 import Foundation
 
-struct TvShow: Decodable {
-    let id: Int
-    let name: String
+public struct TvShow: Decodable {
+    let id: Int?
+    let name: String?
     
-    var posterUrl: URL {
-        return URL(string: image["original"] ?? "")!
+    var posterUrl: URL? {
+        return URL(string: (image?["original"] ?? "") ?? "")
     }
     
-    var image: [String: String]
-    //let airs: Date?
-    //let premiered: Date?
-    //let ended: Date?
-    let genres: [String]
+    var image: [String: String?]?
+    let premiered: String?
+    let ended: String?
+    let genres: [String]?
     //let schedule: Schedule
-    let summary: String
+    let summary: String?
     //let episodes: [Episode]
     
     enum CodingKeys: String, CodingKey {
@@ -23,5 +22,7 @@ struct TvShow: Decodable {
         case image
         case genres
         case summary
+        case premiered
+        case ended
     }
 }
